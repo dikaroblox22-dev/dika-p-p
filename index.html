@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>For Abel 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: radial-gradient(circle,#ffd6ec,#ffb3d9,#ff99cc);
+  overflow: hidden;
+  text-align: center;
+}
+
+/* CARD GLOW */
+.card {
+  background: #fff0f6;
+  padding: 30px;
+  border-radius: 25px;
+  width: 320px;
+  margin: 80px auto;
+  box-shadow: 
+    0 0 15px #ff66b2,
+    0 0 30px #ff99cc,
+    0 0 45px #ffb3d9;
+  animation: fadeIn 1.5s ease, glowPulse 2s infinite alternate;
+}
+
+/* PHOTO STYLE */
+.photo-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.photo {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 3px solid #ff99cc;
+  box-shadow: 0 0 10px #ff66b2, 0 0 20px #ff99cc;
+  transition: .3s;
+}
+
+.photo:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ff2f92, 0 0 40px #ff66cc;
+}
+
+/* TEXT */
+h1 { color:#ff2f92; text-shadow:0 0 8px #ff99cc; }
+p { color:#b30059; }
+
+/* BUTTON */
+button {
+  background:#ff4da6;
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:25px;
+  margin:5px;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 0 10px #ff66b2;
+}
+button:hover {
+  transform:scale(1.1);
+  box-shadow:0 0 20px #ff2f92;
+}
+
+.secret {
+  display:none;
+  color:#ff0066;
+  font-weight:bold;
+  text-shadow:0 0 6px pink;
+}
+
+/* LOVE METER */
+.meter {
+  width:100%;
+  background:#ffd6eb;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:10px;
+}
+.fill {
+  height:20px;
+  width:0%;
+  background:#ff2f92;
+  box-shadow:0 0 10px #ff66b2;
+  transition:1s;
+}
+
+/* HEART */
+.heart {
+  position:absolute;
+  animation:float linear infinite;
+  text-shadow:0 0 10px #ff66cc;
+}
+
+/* CONFETTI */
+.confetti {
+  position:absolute;
+  width:8px;
+  height:8px;
+  animation:confettiFall 3s linear forwards;
+}
+
+/* ANIMATIONS */
+@keyframes float {
+  0% {transform:translateY(100vh);}
+  100% {transform:translateY(-10vh);}
+}
+@keyframes confettiFall {
+  to {transform:translateY(100vh) rotate(720deg);}
+}
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1;}
+}
+@keyframes glowPulse {
+  from {box-shadow:0 0 10px #ff66b2;}
+  to {box-shadow:0 0 40px #ff2f92;}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3">
+</audio>
+
+<div class="card">
+
+<h1>Hai Abel 💗</h1>
+
+<p>haloo ABELL WWKWKWK✨</p>
+
+<!-- FOTO ABEL -->
+<div class="photo-row">
+  <img src="https://api.deline.web.id/q9fnj6SkBm.jpeg" class="photo">
+  <img src="https://api.deline.web.id/HaJOKGtYke.jpeg" class="photo">
+  <img src="https://api.deline.web.id/1mTTjqA0go.jpeg" class="photo">
+</div>
+
+<button onclick="secret()">Pesan Rahasia 💌</button>
+<div class="secret" id="secret">
+makasi ya abell kamu udah Dateng di kehidupan akuu,aku seneng bangett semoga kamu sehat selaluu yaww❤️
+</div>
+
+<button onclick="loveMeter()">Love Meter 💞</button>
+<div class="meter"><div class="fill" id="fill"></div></div>
+
+<p id="countdown">Kejutan dalam: 5</p>
+
+</div>
+
+<script>
+function secret(){
+document.getElementById("secret").style.display="block";
+confettiBurst();
+}
+
+function loveMeter(){
+let fill=document.getElementById("fill");
+let value=Math.floor(Math.random()*40)+60;
+fill.style.width=value+"%";
+confettiBurst();
+}
+
+let time=5;
+let cd=setInterval(()=>{
+time--;
+document.getElementById("countdown").innerText="Kejutan dalam: "+time;
+if(time==0){
+clearInterval(cd);
+alert("HAII ABELL KAMU LUCU SYEKALII💖");
+confettiBurst();
+}
+},1000);
+
+/* floating hearts */
+for(let i=0;i<30;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML=["💗","💖","💕","💞"][Math.floor(Math.random()*4)];
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(4+Math.random()*4)+"s";
+h.style.fontSize=(16+Math.random()*20)+"px";
+document.body.appendChild(h);
+}
+
+/* click heart */
+document.addEventListener("click",e=>{
+let heart=document.createElement("div");
+heart.innerHTML="💖";
+heart.style.position="absolute";
+heart.style.left=e.clientX+"px";
+heart.style.top=e.clientY+"px";
+heart.style.fontSize="24px";
+heart.style.textShadow="0 0 10px pink";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),1000);
+});
+
+/* confetti */
+function confettiBurst(){
+for(let i=0;i<25;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background=["#ff4da6","#ff99cc","#ff66b2"][Math.floor(Math.random()*3)];
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+}
+</script>
+
+</body>
+</html>
